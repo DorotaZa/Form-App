@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 
 function Form(props){
+
+    const [isMousedOver, setMouseOver] = useState(false);
+    function handleMouseOver(){
+        setMouseOver(true);
+    }
+    function handleMouseOut(){
+        setMouseOver(false);
+    }
+
     return (
         <form className="form">
         <Input 
@@ -17,7 +26,12 @@ function Form(props){
             placeholder="Confirm Password"
         /> }
         
-        <button type="submit">{props.isRegistered ? "Login" : "Register"}</button>
+        <button 
+        style={{backgroundColor: isMousedOver ? "#2e7473" : "white"}} 
+        type="submit"
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        >{props.isRegistered ? "Login" : "Register"}</button>
       </form>
       );
 }
